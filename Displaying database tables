@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+	<html>
+		<head>    
+		<meta charset="utf-8" />
+    
+		<title>Просмотр таблиц</title>    
+			<style> 
+				body {            
+				background-color: #098FE1;        
+				}  
+      
+				h1 {           
+				font: bold 16px Arial;
+				color: white;        
+				}  
+      
+				h2 {            
+				font: bold 14px Arial;        
+				} 
+       
+				table {            
+				border-collapse: collapse;            
+				border-color: #f0f0f0;        
+				}  
+      
+				td {            
+				padding:8px;        
+				}
+			</style>  
+  
+				<script>        
+					var rolesURL = "rolesJS.inc.php";        
+					var usersURL = "usersJS.inc.php";       
+					var indicationsURL = "indicationsJS.inc.php";        
+					var servicesURL = "servicesJS.inc.php";        
+					var monthsURL = "monthsJS.inc.php";        
+					var yearsURL = "yearsJS.inc.php"; 
+       
+					window.onload = function () {            
+					document.getElementById("roles").onclick = function () {			
+					document.getElementById("caption").innerHTML=document.getElementById("roles").innerHTML;                
+					getJsonFromServer(rolesURL, "data");            
+						}   
+         
+					document.getElementById("users").onclick = function () {			
+					document.getElementById("caption").innerHTML=document.getElementById("users").innerHTML;                
+					getJsonFromServer(usersURL, "data");            
+						}  
+          
+					document.getElementById("indications").onclick = function () {			
+					document.getElementById("caption").innerHTML=document.getElementById("indications").innerHTML;                
+					getJsonFromServer(indicationsURL, "data");            
+						}
+ 
+           
+					document.getElementById("services").onclick = function () {			
+					document.getElementById("caption").innerHTML=document.getElementById("services").innerHTML;                
+					getJsonFromServer(servicesURL, "data");            
+						}
+            
+					document.getElementById("months").onclick = function () {			
+					document.getElementById("caption").innerHTML=document.getElementById("months").innerHTML;                
+					getJsonFromServer(monthsURL, "data");            
+						}  
+          
+					document.getElementById("years").onclick = function () {			
+					document.getElementById("caption").innerHTML=document.getElementById("years").innerHTML;                
+					getJsonFromServer(yearsURL, "data");            
+						}        
+					} 
+       
+					var getJsonFromServer = function (URL, id) {            
+					var xmlhttp = new XMLHttpRequest();    
+        
+					xmlhttp.onreadystatechange = function () {
+                
+					if (this.readyState == 4 && this.status == 200) { 
+                  
+					var object = JSON.parse(this.responseText.trim());                    
+					var html = "";	
+				
+					for (var i = 0; i < object.length; i++) {                        
+					html += "<tr>";    
+                   
+					for (var p in object[i]) {                            
+					html += "<td>" + object[i][p] + "</td>";                        
+					}                        
+					html += "</tr>";                    
+					}                    
+					document.getElementById(id).innerHTML = html;                
+						}            
+					};            
+					xmlhttp.open("GET", URL, true);            
+					xmlhttp.send();        
+					}    
+				</script>    
+    
+		</head>
+
+	<body>    
+		<h1>Таблицы БД:</h1>    
+		<table border="1">        
+			<tr>            
+			<td valign="top" bgcolor="#f0f0f0" width="150">                
+			<a id="roles" href="#">Роли</a>                
+			<br />                
+			<a id="users" href="#">Пользователи</a>                
+			<br/>                
+			<a id="indications" href="#">Показания</a>                
+			<br/>                
+			<a id="services" href="#">Услуги</a>                
+			<br/>                
+			<a id="months" href="#">Месяцы</a>                
+			<br/>                
+			<a id="years" href="#">Годы</a>                
+			<br/>                
+			</td>            
+			<td bgcolor="#ffffff" width="300">                
+			<b id="caption"></b>                
+			<table id="data" border="1" width="95%">
+			</table>            
+			</td>       
+			</tr>    
+		</table>
+
+	</body>
+</html>
