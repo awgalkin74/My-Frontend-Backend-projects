@@ -12,3 +12,37 @@
     
     echo json_encode($table);
 ?>
+
+<?php
+
+	echo "<b>Список пользователей</b><br /><br />\n";
+	
+	echo "<table border=1 cellpadding='4' style='border-collapse:collapse;'>\n";
+	
+	echo "<tr style='color:#0000c0;background-color:#f0f0f0;'>\n";
+	echo "<th>Код</th><th>ФИО</th><th>Роль</th><th>Город</th><th>Возраст</th><th>Телефон</th><th>E-mail</th><th>Login</th><th>MD5(Password)</th>\n";
+   	echo "</tr>\n";	 
+
+	$sql = "SELECT `users`.`id_user`, `users`.`name`, `roles`.`id_role`, `users`.`address`, `users`.`login`, `users`.`password` " .
+		"FROM roles, users WHERE `roles`.`id_role` = `users`.`id_role` ORDER BY `users`.`id_user`";
+	$result = mysqli_query($link, $sql);                  
+
+	while ($row = mysqli_fetch_row($result)) {
+
+	   $id_user = $row[0];
+	   $name = $row[1];
+	   $id_role = $row[2];
+	   $address = $row[3];
+	   $login = $row[4];
+	   $password = $row[5];
+	   
+	   echo "<tr>\n";
+	   echo "<td style='text-align:right;'>$id_user</td><td>$name</td><td>$id_role</td><td>$address</td><td style='text-align:right;'>$login</td><td>$password</td>\n";
+   	   echo "</tr>\n";		
+
+	}
+	
+	echo "</table>\n";
+	
+?>
+
