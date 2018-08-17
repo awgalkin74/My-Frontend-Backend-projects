@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Главная страница</title>
+    <meta charset="windows-1251" />
+    <link rel="stylesheet" type="text/css" href="./CSS/stylesheet.css" /> 
+
+</head>
+
+<body>
+    <div id="page_align">
+        
+        <div id="header">
+            
+            <div id="header_nav">
+                
+                <ul>
+                    <li><a href="./index.php?page=main">Главная страница</a></li>
+                    <li><a href="./about.html?page=about">О нас</a></li>
+                    <li><a href="./contacts.html?page=contacts">Контакты</a></li>
+                    <li><a href="http://fr11174.rinethost.ru/admin/index.php?user/login">Администрирование</a></li>
+                </ul>
+                
+            </div>
+            
+            <div id="header_cont"></div>            
+            
+        </div>
+        
+        <div id="intro"><img src="./Images/bg_intro.png" style="height: 150px;
+            width: 1000px;" />
+        </div>
+        
+         <div id="content">
+            
+            <table border="0" align="center" cellpadding="4px" style="margin: 0 auto;>
+                    
+                        <tr>
+                            <td colspan="3" align="left">
+                                <span class="caption" style="font-size:14pt; padding: 0 150px;">Р“Р›РђР’РќРђРЇ</span>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <a href="tables.html">
+                                <img src="./Images/11.png" /></a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                <img src="./Images/22.png" /></a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                <img src="./Images/33.png" /></a>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <a href="#">
+                                <img src="./Images/44.png" /></a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                <img src="./Images/55.png" /></a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                <img src="./Images/66.png" /></a>
+                            </td>
+                        </tr>
+                        
+                    </table> 
+        <div id="clr">
+        <table width="100%" bgcolor="#f0f0f0" border="0" cellpadding="1px">
+
+                    <tr>
+
+                        <td align="left">
+                            <span class="h1description"> 2017 </span>
+                        </td>
+
+                        <td align="right">
+                            <span style="font-size:10pt;color:#808080;">
+                                e-mail: <a href="aw.galkin74@gmail.com">aw.galkin74@gmail.com</a>
+                            </span>
+                        </td>
+
+                    </tr>
+
+                </table>
+           
+        </div>
+        
+    </div>
+    
+</body>
+
+</html>
