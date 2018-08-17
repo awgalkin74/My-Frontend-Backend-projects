@@ -1,0 +1,173 @@
+--
+-- База данных: `services`
+--
+CREATE DATABASE IF NOT EXISTS `services` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `services`;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `years`
+--
+
+DROP TABLE IF EXISTS `years`;
+CREATE TABLE IF NOT EXISTS `years` (
+  `id_year` int(11) NOT NULL AUTO_INCREMENT,
+  `year` varchar(64) NOT NULL,
+  PRIMARY KEY (`id_year`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `years`
+--
+
+INSERT INTO `years` (`id_year`, `year`) VALUES
+(1, '2012'),
+(2, '2013'),
+(3, '2014'),
+(4, '2015');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `months`
+--
+
+DROP TABLE IF EXISTS `months`;
+CREATE TABLE IF NOT EXISTS `months`(
+  `id_month` int(11) NOT NULL AUTO_INCREMENT,
+  `month` varchar(64) NOT NULL,
+  PRIMARY KEY (`id_month`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `months`
+--
+
+INSERT INTO `months` (`id_month`, `month`) VALUES
+(1, 'Январь'),
+(2, 'Февраль'),
+(3, 'Март'),
+(4, 'Апрель'),
+(5, 'Май'),
+(6, 'Июнь'),
+(7, 'Июль'),
+(8, 'Август'),
+(9, 'Сентябрь'),
+(10, 'Октябрь'),
+(11, 'Ноябрь'),
+(12, 'Декабрь');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `services`
+--
+
+DROP TABLE IF EXISTS `services`;
+CREATE TABLE IF NOT EXISTS `services`(
+  `id_service` int(11) NOT NULL AUTO_INCREMENT,
+  `service` varchar(64) NOT NULL,
+  PRIMARY KEY (`id_service`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `service`
+--
+
+INSERT INTO `service` (`id_service`, `service`) VALUES
+(1, 'ГВС'),
+(2, 'ХВС'),
+(3, 'Электроэнергия');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `indications`
+--
+
+DROP TABLE IF EXISTS `indications`;
+CREATE TABLE IF NOT EXISTS `indications` (
+  `id_indication` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `id_service` int(64) NOT NULL,
+  `id_month` int(11) NOT NULL,
+  `id_year` int(11) NOT NULL,
+  `previous` int(11) NOT NULL,
+  `current` int(11) NOT NULL;
+  PRIMARY KEY (`id_indication`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `indications`
+--
+
+INSERT INTO `indications` (`id_indication`, `id_user`, `id_service`, `id_month`, `id_year`, `previous`, `current`) VALUES
+(1, 1, 1, 12, 4, '002499', '002600'),
+(2, 2, 1, 12, 4, '001300', '001550'),
+(3, 1, 2, 11, 4, '002500', '003000'),
+(4, 4, 2, 11, 4, '002780', '003050'),
+(5, 5, 3, 10, 4, '001800', '001930'),
+(6, 3, 3, 10, 4, '002100', '002300'),
+(7, 6, 2, 10, 4, '002400', '002440'),
+(8, 7, 1, 10, 4, '002550', '002689'),
+(9, 8, 3, 10, 4, '003241', '003452'),
+(10, 9, 2, 10, 4, '004400', '004800'),
+(11, 10, 1, 10, 4, '005110', '005602'),
+(12, 7, 1, 10, 4, '003400', '003800');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id_role` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(64) NOT NULL,
+  PRIMARY KEY (`id_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `roles`
+--
+
+INSERT INTO `roles` (`id_role`, `role`) VALUES
+(1, 'Администратор'),
+(2, 'Редактор'),
+(3, 'Абонент');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `id_role` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `address` varchar(64) NOT NULL,
+  `login` varchar(128) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id_user`, `id_role`, `name`, `address`, `login`, `password`) VALUES
+(1, 1, 'Гусин В.В.', 'Челябинск, ул.Гагарина 33', 'gus74@gmail.com', '757b505cfd34c64c85ca5b5690ee5293'),
+(2, 2, 'Петренко Е.Д.', 'Челябинск, ул.Пушкина 77', 'peteko174@gmail.com', '854d6fae5ee42911677c739ee1734486'),
+(3, 2, 'Галина У.А.', 'Челябинск, ул.Вагнера 142', 'galina@gmail.com', 'e2c0be24560d78c5e599c2a9c9d0bbd2'),
+(4, 3, 'Дроздов А.В.', 'Челябинск, ул.Гагарина 233', 'drozd174@gmail.com', '274ad4786c3abca69fa097b85867d9a4'),
+(5, 3, 'Панина А.Г.', 'Челябинск, ул.Ленина 74', 'panina@gmail.com', 'eae27d77ca20db309e056e3d2dcd7d69'),
+(6, 3, 'Жутков В.В.', 'Челябинск, ул.Ленина 50', 'ghut174@gmail.com', '7eabe3a1649ffa2b3ff8c02ebfd5659f'),
+(7, 3, 'Татина Е.В.', 'Челябинск, ул. Псковская 8а', 'tata@gmail.com', '69adc1e107f7f7d035d7baf04342e1ca'),
+(8, 1, 'Шнур Г.П.', 'Челябинск, ул.Пирогова 1а', 'shnur11@gmail.com', '091d584fced301b442654dd8c23b3fc9'),
+(9, 3, 'Айнурова А.А.', 'Челябинск, ул.Горелова 44', 'ainur174@gmail.com', 'b1d10e7bafa4421218a51b1e1f1b0ba2'),
+(10, 4, 'Травлин Е.Г.', 'Челябинск, ул.Гагарина 17', 'travlin@gmail.com', '6f3ef77ac0e3619e98159e9b6febf557');
+COMMIT;
